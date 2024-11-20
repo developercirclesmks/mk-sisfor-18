@@ -11,7 +11,7 @@ const linkClasses =
 
 export default function Sidebar() {
   return (
-    <div className='bg-slate-900 w-60 p-3 flex flex-col text-white h-screen w-60'>
+    <div className='bg-slate-900 w-60 p-3 flex flex-col text-white h-screen'>
         <div className='flex items-center gap-2 px-1 py-3'>
             ORGANISASI KEMAHASISWAAN
         </div>

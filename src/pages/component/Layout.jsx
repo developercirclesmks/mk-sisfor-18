@@ -4,13 +4,10 @@ import Sidebar from './Sidebar'
 
 export default function Layout() {
   return (
-    <div>
-        <div className=' flex flex-row bg-white h-screen'>
+        <div className='flex flex-row w-full bg-white h-screen'>
              <Sidebar />  
                 <Outlet/>
         </div>
-        <div className=''>
-        </div>
-    </div>
+   
   )
 }
