@@ -10,14 +10,15 @@ function App() {
   return (
     <Router>
       <Routes>
+      <Route path="/login" element={<Login />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="anggota" element={<Anggota />} />
           <Route path="kegiatan" element={<Kegiatan />} />
           <Route path="struktural" element={<Struktural />} />
         </Route>
+        {/* Pindahkan Route login ke dalam Routes */}
       </Routes>
-      <Route path="login" element={<Login />} />
     </Router>
   );
 }
