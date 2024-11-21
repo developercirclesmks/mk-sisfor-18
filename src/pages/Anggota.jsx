@@ -70,29 +70,38 @@ export default function Anggota() {
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-2xl p-2 font-bold">Data anggota</h2>
                     <div className='p-2'>
+
+                        {/*button tambah anggota */}
                         <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300">
                             <HiOutlinePlus onClick={() => setOpen(true)} />
                         </button>
+
+                        {/*pop up memasukkan data anggota baru*/}
                         <Modal open={open} onClose={() => setOpen(false)}>
                             <div className='text-slate-900 mx-auto text-2xl font-medium flex justify-center py-2'>
                                 Masukkan anggota baru
                             </div>
                             <div className='mt-3 flex flex-col justify-center items-center '>
+
                                 <input
                                     className='border-b-2 border-slate-900 m-4 mx-8 px-4 outline-none'
                                     type="text" placeholder='Nama'
                                     onChange={(event) => setAnggotaBaru(event.target.value)}
                                 />
+
                                 <input
                                     className='border-b-2 border-slate-900 m-4 mx-8 px-4 outline-none'
                                     type="text" placeholder='Jabatan'
                                     onChange={(event) => setJabatanBaru(event.target.value)}
                                 />
+
                                 <input
                                     className='border-b-2 border-slate-900 my-4 mx-8 px-4 outline-none'
                                     type="text" placeholder='Kontak'
                                     onChange={(event) => setKontakBaru(event.target.value)}
                                 />
+
+                                {/*button add anggota*/}
                                 <button
                                     className='bg-slate-900 text-white justify-center rounded-lg px-6 py-3'
                                     onClick={handleCreateAnggota}
@@ -101,10 +110,13 @@ export default function Anggota() {
                                 </button>
                             </div>
                         </Modal>
+
                     </div>
                 </div>
 
+                {/*Tabel data anggota*/}
                 <table className="w-full table-auto border-collapse border border-gray-200">
+
                     <thead className="bg-gray-100">
                         <tr>
                             <th className='border border-gray-200 px-4 py-2'>ID</th>
@@ -114,6 +126,8 @@ export default function Anggota() {
                             <th className="border border-gray-200 px-4 py-2">Aksi</th>
                         </tr>
                     </thead>
+
+                    {/* isi data tabel anggota */}
                     <tbody>
                         {anggotaList.map((anggota) => (
                             <tr key={anggota.id} className="text-center">
@@ -122,6 +136,8 @@ export default function Anggota() {
                                 <td className="border border-gray-200 px-4 py-2">{anggota.Jabatan}</td>
                                 <td className="border border-gray-200 px-4 py-2">{anggota.Kontak}</td>
                                 <td className="border border-gray-200 px-4 py-2">
+                                    
+                                    {/*button edit data anggota */}
                                     <button
                                         className="bg-green-500 p-2 text-white rounded-full mr-3 hover:bg-green-600"
                                         onClick={() => {
@@ -131,11 +147,14 @@ export default function Anggota() {
                                     >
                                         <HiPencil />
                                     </button>
+
+                                    {/* pop up edit data anggota */}
                                     <Modal open={editOpen} onClose={() => setEditOpen(false)}>
                                         <div className='text-slate-900 mx-auto text-2xl font-medium flex justify-center py-2'>
                                             Edit Anggota
                                         </div>
                                         <div className='mt-3 flex flex-col justify-center items-center'>
+                                            
                                             <input
                                                 className='border-b-2 border-slate-900 m-4 mx-8 px-4 outline-none'
                                                 type="text"
@@ -144,6 +163,7 @@ export default function Anggota() {
                                                 onChange={(event) =>
                                                     setEditingAnggota({ ...editingAnggota, Nama: event.target.value })}
                                             />
+
                                             <input
                                                 className='border-b-2 border-slate-900 m-4 mx-8 px-4 outline-none'
                                                 type="text"
@@ -152,6 +172,7 @@ export default function Anggota() {
                                                 onChange={(event) =>
                                                     setEditingAnggota({ ...editingAnggota, Jabatan: event.target.value })}
                                             />
+
                                             <input
                                                 className='border-b-2 border-slate-900 m-4 mx-8 px-4 outline-none'
                                                 type="text"
@@ -160,6 +181,7 @@ export default function Anggota() {
                                                 onChange={(event) =>
                                                     setEditingAnggota({ ...editingAnggota, Kontak: event.target.value })}
                                             />
+                                            
                                             <button
                                                 className='bg-slate-900 text-white justify-center rounded-lg px-6 py-3'
                                                 onClick={handleEditAnggota}
