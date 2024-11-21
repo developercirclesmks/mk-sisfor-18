@@ -1,9 +1,10 @@
-// Import the functions you need from the SDKs you need
+// firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth"; // Use getAuth to get the auth instance
 
+// Your web app's Firebase configuration
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -18,16 +19,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app)
 
-// Initialize Analytics
+// Initialize Firestore and Authentication
+export const db = getFirestore(app);  // Firestore instance
+export const auth = getAuth(app);  // Correctly using getAuth() to get the auth instance
+
+// Initialize Analytics (only if running in the browser environment)
 let analytics;
-if (typeof window !== "undefined") {
+if (typeof window !== "undefined" && process.env.NODE_ENV === "production") {
   analytics = getAnalytics(app);
 }
-
-// Initialize Firestore
-const firestore = getFirestore(app);
-
-// Initialize Authentication
-const auth = getAuth(app);
