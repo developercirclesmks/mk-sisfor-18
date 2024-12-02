@@ -25,7 +25,7 @@ const App = () => {
       </h1>
 
       {/* Grid Section */}
-      <div className="grid grid-cols-3 gap-16 justify-center mt-10">
+      <div className="grid grid-cols-3 gap-16 justify-center mt-5 p-10">
         {organizationLinks.map((org, index) => (
           // Using Link instead of <a> to handle navigation in React without full page reload
           <Link

@@ -25,7 +25,7 @@ export default function Sidebar() {
     };
 
   return (
-    <div className='bg-slate-900 w-[42vh] p-3 flex flex-col text-white h-screen '>
+    <div className='bg-slate-900 text-white p-3 fixed left-0 top-0 bottom-0 w-[35vh] flex flex-col '>
         <div className='flex items-center gap-2 px-1 py-3 text-center font-bold text-lg'>
             ORGANISASI KEMAHASISWAAN
         </div>
