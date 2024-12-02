@@ -17,7 +17,7 @@ function App() {
           <Route path="anggota" element={<Anggota />} />
           <Route path="kegiatan" element={<Kegiatan />} />
           <Route path="struktural" element={<Struktural />} />
-          <Route path="okif-ft-uh" element={<OkifFtUh />} /> {/* Menambahkan route ke OkifFtUh */}
+          <Route path="okif-ft-uh" element={<OkifFtUh />} /> 
         </Route>
       </Routes>
     </Router>
