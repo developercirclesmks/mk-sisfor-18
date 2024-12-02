@@ -38,54 +38,54 @@ export default function Sidebar({ open, onToggle }){
             title: "Data anggota", icon: <HiUserGroup />,
             submenu: true,
             submenuItems: [
-                {title: "HMS FT-UH"},
-                {title: "HMDP FT-UH"},
-                {title: "HME FT-UH"},
-                {title: "HMG FT-UH"},
-                {title: "HMM FT-UH"},
-                {title: "HMA FT-UH"},
-                {title: "HMTI FT-UH"},
-                {title: "HMTL FT-UH"},
-                {title: "OKIF FT-UH"},
-                {title: "OKSP FT-UH"},
-                {title: "HMTK FT-UH"},
-                {title: "PERMATA FT-UH"},
+                {title: "HMS FT-UH", path: "/data-anggota/hms-ftuh", orgPath: "Organisasi_mahasiswa/HMS-FTUH/Anggota_organisasi" },
+                {title: "HMDP FT-UH", path: "/data-anggota/hmdp-ftuh", orgPath: "Organisasi_mahasiswa/HMDP-FTUH/Anggota_organisasi" },
+                {title: "HME FT-UH", path: "/data-anggota/hme-ftuh", orgPath: "Organisasi_mahasiswa/HME-FTUH/Anggota_organisasi" },
+                {title: "HMG FT-UH", path: "/data-anggota/hmg-ftuh", orgPath: "Organisasi_mahasiswa/HMG-FTUH/Anggota_organisasi" },
+                {title: "HMM FT-UH", path: "/data-anggota/hmm-ftuh", orgPath: "Organisasi_mahasiswa/HMM-FTUH/Anggota_organisasi" },
+                {title: "HMA FT-UH", path: "/data-anggota/hma-ftuh", orgPath: "Organisasi_mahasiswa/HMA-FTUH/Anggota_organisasi" },
+                {title: "HMTI FT-UH", path: "/data-anggota/hmti-ftuh", orgPath: "Organisasi_mahasiswa/HMTI-FTUH/Anggota_organisasi" },
+                {title: "HMTL FT-UH", path: "/data-anggota/hmtl-ftuh",  orgPath: "Organisasi_mahasiswa/HMTL-FTUH/Anggota_organisasi" },
+                {title: "OKIF FT-UH", path: "/data-anggota/okif-ftuh", orgPath: "Organisasi_mahasiswa/OKIF-FTUH/Anggota_organisasi" },
+                {title: "OKSP FT-UH", path: "/data-anggota/oksp-ftuh", orgPath: "Organisasi_mahasiswa/OKSP-FTUH/Anggota_organisasi" },
+                {title: "HMTK FT-UH", path: "/data-anggota/hmtk-ftuh", orgPath: "Organisasi_mahasiswa/HMTK-FTUH/Anggota_organisasi" },
+                {title: "PERMATA FT-UH", path: "/data-anggota/permata-ftuh", orgPath: "Organisasi_mahasiswa/PERMATA-FTUH/Anggota_organisasi" },
             ]
         },
         { 
             title: "Agenda kegiatan", icon: <HiCalendar />,
             submenu: true,
             submenuItems: [
-                {title: "HMS FT-UH"},
-                {title: "HMDP FT-UH"},
-                {title: "HME FT-UH"},
-                {title: "HMG FT-UH"},
-                {title: "HMM FT-UH"},
-                {title: "HMA FT-UH"},
-                {title: "HMTI FT-UH"},
-                {title: "HMTL FT-UH"},
-                {title: "OKIF FT-UH"},
-                {title: "OKSP FT-UH"},
-                {title: "HMTK FT-UH"},
-                {title: "PERMATA FT-UH"},
+                {title: "HMS FT-UH", path: "/agenda-anggota/hms-ftuh", orgPath: "Organisasi_mahasiswa/HMS-FTUH/Agenda_organisasi" },
+                {title: "HMDP FT-UH", path: "/agenda-anggota/hmdp-ftuh", orgPath: "Organisasi_mahasiswa/HMDP-FTUH/Agenda_organisasi" },
+                {title: "HME FT-UH", path: "/agenda-anggota/hme-ftuh", orgPath: "Organisasi_mahasiswa/HME-FTUH/Agenda_organisasi" },
+                {title: "HMG FT-UH", path: "/agenda-anggota/hmg-ftuh", orgPath: "Organisasi_mahasiswa/HMG-FTUH/Agenda_organisasi" },
+                {title: "HMM FT-UH", path: "/agenda-anggota/hmm-ftuh", orgPath: "Organisasi_mahasiswa/HMM-FTUH/Agenda_organisasi" },
+                {title: "HMA FT-UH", path: "/agenda-anggota/hma-ftuh", orgPath: "Organisasi_mahasiswa/HMA-FTUH/Agenda_organisasi" },
+                {title: "HMTI FT-UH", path: "/agenda-anggota/hmti-ftuh", orgPath: "Organisasi_mahasiswa/HMTI-FTUH/Agenda_organisasi" },
+                {title: "HMTL FT-UH", path: "/agenda-anggota/hmtl-ftuh",  orgPath: "Organisasi_mahasiswa/HMTL-FTUH/Agenda_organisasi" },
+                {title: "OKIF FT-UH", path: "/agenda-anggota/okif-ftuh", orgPath: "Organisasi_mahasiswa/OKIF-FTUH/Agenda_organisasi" },
+                {title: "OKSP FT-UH", path: "/agenda-anggota/oksp-ftuh", orgPath: "Organisasi_mahasiswa/OKSP-FTUH/Agenda_organisasi" },
+                {title: "HMTK FT-UH", path: "/agenda-anggota/hmtk-ftuh", orgPath: "Organisasi_mahasiswa/HMTK-FTUH/Agenda_organisasi" },
+                {title: "PERMATA FT-UH", path: "/agenda-anggota/permata-ftuh", orgPath: "Organisasi_mahasiswa/PERMATA-FTUH/Agenda_organisasi" },
             ]
         },
         { 
             title: "Struktur organisasi", icon: <PiTreeStructureFill />,
             submenu: true,
             submenuItems: [
-                {title: "HMS FT-UH"},
-                {title: "HMDP FT-UH"},
-                {title: "HME FT-UH"},
-                {title: "HMG FT-UH"},
-                {title: "HMM FT-UH"},
-                {title: "HMA FT-UH"},
-                {title: "HMTI FT-UH"},
-                {title: "HMTL FT-UH"},
-                {title: "OKIF FT-UH"},
-                {title: "OKSP FT-UH"},
-                {title: "HMTK FT-UH"},
-                {title: "PERMATA FT-UH"},
+                {title: "HMS FT-UH", path: "/struktur-anggota/hms-ftuh", orgPath: "Organisasi_mahasiswa/HMS-FTUH/Struktur_organisasi" },
+                {title: "HMDP FT-UH", path: "/struktur-anggota/hmdp-ftuh", orgPath: "Organisasi_mahasiswa/HMDP-FTUH/Struktur_organisasi" },
+                {title: "HME FT-UH", path: "/struktur-anggota/hme-ftuh", orgPath: "Organisasi_mahasiswa/HME-FTUH/Struktur_organisasi" },
+                {title: "HMG FT-UH", path: "/struktur-anggota/hmg-ftuh", orgPath: "Organisasi_mahasiswa/HMG-FTUH/Struktur_organisasi" },
+                {title: "HMM FT-UH", path: "/struktur-anggota/hmm-ftuh", orgPath: "Organisasi_mahasiswa/HMM-FTUH/Struktur_organisasi" },
+                {title: "HMA FT-UH", path: "/struktur-anggota/hma-ftuh", orgPath: "Organisasi_mahasiswa/HMA-FTUH/Struktur_organisasi" },
+                {title: "HMTI FT-UH", path: "/struktur-anggota/hmti-ftuh", orgPath: "Organisasi_mahasiswa/HMTI-FTUH/Struktur_organisasi" },
+                {title: "HMTL FT-UH", path: "/struktur-anggota/hmtl-ftuh",  orgPath: "Organisasi_mahasiswa/HMTL-FTUH/Struktur_organisasi" },
+                {title: "OKIF FT-UH", path: "/struktur-anggota/okif-ftuh", orgPath: "Organisasi_mahasiswa/OKIF-FTUH/AStruktur_organisasi" },
+                {title: "OKSP FT-UH", path: "/struktur-anggota/oksp-ftuh", orgPath: "Organisasi_mahasiswa/OKSP-FTUH/Struktur_organisasi" },
+                {title: "HMTK FT-UH", path: "/struktur-anggota/hmtk-ftuh", orgPath: "Organisasi_mahasiswa/HMTK-FTUH/Struktur_organisasi" },
+                {title: "PERMATA FT-UH", path: "/struktur-anggota/permata-ftuh", orgPath: "Organisasi_mahasiswa/PERMATA-FTUH/Struktur_organisasi" },
             ]
         },
     ];
@@ -131,7 +131,8 @@ export default function Sidebar({ open, onToggle }){
                                     {menu.submenuItems.map((submenuItems, subIndex) => (
                                         <li 
                                         key={subIndex}
-                                        className={`text-white text-xs flex items-center gap-x-4 cursor-pointer p-1 px-5 hover:bg-gray-700 rounded-md mt-2 ${menu.spacing ? "mt-[50vh]" : "mt-2"}`}>
+                                        className={`text-white text-xs flex items-center gap-x-4 cursor-pointer p-1 px-5 hover:bg-gray-700 rounded-md mt-2 ${menu.spacing ? "mt-[50vh]" : "mt-2"}`}
+                                        onClick={() => navigate(submenuItems.path)}>
                                             {submenuItems.title}
                                         </li>
                                     ))}
