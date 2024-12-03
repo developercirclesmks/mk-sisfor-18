@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./pages/component/Layout";
 import Dashboard from "./pages/Dashboard";
-import Kegiatan from "./pages/Kegiatan";
-import Struktural from "./pages/Struktural";
 import Login from "./pages/Login";
 import OkifFtUh from "./pages/OkifFtUh"; 
 import DataAnggota from "./pages/DataAnggota"; 
+import AgendaKegiatan from "./pages/AgendaKegiatan";
+import StrukturOrganisasi from "./pages/StrukturOrganisasi";
 
 
 function App() {
@@ -19,11 +19,17 @@ function App() {
             path="/data-anggota/:orgName"
             element={<DataAnggota />}
           />
+          <Route
+            path="/agenda-kegiatan/:orgName"
+            element={<AgendaKegiatan />}
+          />
+          <Route
+            path="/struktur-organisasi/:orgName"
+            element={<StrukturOrganisasi />}
+          />
 
           {/* Route page lain sesuaikan mi sama route page ku */}
 
-          <Route path="kegiatan" element={<Kegiatan />} />
-          <Route path="struktural" element={<Struktural />} />
           <Route path="okif-ft-uh" element={<OkifFtUh />} /> 
         </Route>
       </Routes>
