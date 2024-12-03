@@ -14,16 +14,18 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="kegiatan" element={<Kegiatan />} />
-          <Route path="struktural" element={<Struktural />} />
-          <Route path="okif-ft-uh" element={<OkifFtUh />} /> 
+        <Route element={<Layout />}>
+          <Route path="/Dashboard" element={<Dashboard />} />
           <Route
-            path="data-anggota/:orgName"
+            path="/data-anggota/:orgName"
             element={<DataAnggota />}
           />
 
+          {/* Route page lain sesuaikan mi sama route page ku */}
+
+          <Route path="kegiatan" element={<Kegiatan />} />
+          <Route path="struktural" element={<Struktural />} />
+          <Route path="okif-ft-uh" element={<OkifFtUh />} /> 
         </Route>
       </Routes>
     </Router>

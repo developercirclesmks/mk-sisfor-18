@@ -93,7 +93,7 @@ export default function Sidebar({ open, onToggle }){
     return(
         <div>
         <div className="fixed top-0 left-0 h-full  z-50">
-            <div className={`bg-primary h-full p-5 pt-8 ${open ? "w-60" : "w-20"} duration-300 relative flex flex-col`}>
+            <div className={`bg-primary h-full p-5 pt-8 ${open ? "w-60" : "w-20"} duration-700 relative flex flex-col`}>
                 <BsArrowLeftShort 
                 className={`bg-white text-primary text-3xl rounded-full absolute -right-3 top-9 border border-primary cursor-pointer ${!open && "rotate-180"} `}
                 onClick={onToggle}/>
@@ -112,8 +112,18 @@ export default function Sidebar({ open, onToggle }){
                         <div key={index}>
                             <li 
                             className={`text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-gray-700/50 rounded-md mt-2 ${menu.spacing ? "mt-[48vh]" : "mt-2"}`}
-                            onClick={() => toggleSubmenu(index)}>
-                                <span className="text-2xl block float-left">
+                            onClick={() => {
+                                // Jika tidak ada submenu, langsung navigasi
+                                if (!menu.submenu) {
+                                  navigate(menu.path || "/Dashboard"); // Navigasi ke path menu
+                                } else {
+                                  toggleSubmenu(index); // Toggle sub-menu
+                                }
+                              }}
+                            >
+                                <span className="text-2xl block float-left"
+                                onClick={() => navigate('/Dashboard')}
+                                >
                                     {menu.icon ? menu.icon : <RiDashboardFill />}
                                 </span>
                                 <span 
@@ -132,7 +142,8 @@ export default function Sidebar({ open, onToggle }){
                                         <li 
                                         key={subIndex}
                                         className={`text-white text-xs flex items-center gap-x-4 cursor-pointer p-1 px-5 hover:bg-gray-700 rounded-md mt-2 ${menu.spacing ? "mt-[50vh]" : "mt-2"}`}
-                                        onClick={() => navigate(submenuItems.path)}>
+                                        onClick={() => navigate(submenuItems.path)}
+                                        >
                                             {submenuItems.title}
                                         </li>
                                     ))}

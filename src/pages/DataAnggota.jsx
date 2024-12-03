@@ -8,14 +8,14 @@ const DataAnggota = () => {
   const [members, setMembers] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Map orgName ke path koleksi di Firestore
+  // Map orgName ke path collection di firestoreku
   const orgPaths = {
     "hma-ftuh": "Organisasi_mahasiswa/HMA-FTUH/Anggota_organisasi",
     "hms-ftuh": "Organisasi_mahasiswa/HMS-FTUH/Anggota_organisasi",
     "hmdp-ftuh": "Organisasi_mahasiswa/HMDP-FTUH/Anggota_organisasi",
     "hme-ftuh": "Organisasi_mahasiswa/HME-FTUH/Anggota_organisasi",
     "hmm-ftuh": "Organisasi_mahasiswa/HMM-FTUH/Anggota_organisasi",
-    "hmp-ftuh": "Organisasi_mahasiswa/HMP-FTUH/Anggota_organisasi",
+    "hmtk-ftuh": "Organisasi_mahasiswa/HMTK-FTUH/Anggota_organisasi",
     "hmg-ftuh": "Organisasi_mahasiswa/HMG-FTUH/Anggota_organisasi",
     "hmti-ftuh": "Organisasi_mahasiswa/HMTI-FTUH/Anggota_organisasi",
     "hmtl-ftuh": "Organisasi_mahasiswa/HMTL-FTUH/Anggota_organisasi",
