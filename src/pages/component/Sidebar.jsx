@@ -56,36 +56,36 @@ export default function Sidebar({ open, onToggle }){
             title: "Agenda kegiatan", icon: <HiCalendar />,
             submenu: true,
             submenuItems: [
-                {title: "HMS FT-UH", path: "/agenda-anggota/hms-ftuh", orgPath: "Organisasi_mahasiswa/HMS-FTUH/Agenda_organisasi" },
-                {title: "HMDP FT-UH", path: "/agenda-anggota/hmdp-ftuh", orgPath: "Organisasi_mahasiswa/HMDP-FTUH/Agenda_organisasi" },
-                {title: "HME FT-UH", path: "/agenda-anggota/hme-ftuh", orgPath: "Organisasi_mahasiswa/HME-FTUH/Agenda_organisasi" },
-                {title: "HMG FT-UH", path: "/agenda-anggota/hmg-ftuh", orgPath: "Organisasi_mahasiswa/HMG-FTUH/Agenda_organisasi" },
-                {title: "HMM FT-UH", path: "/agenda-anggota/hmm-ftuh", orgPath: "Organisasi_mahasiswa/HMM-FTUH/Agenda_organisasi" },
-                {title: "HMA FT-UH", path: "/agenda-anggota/hma-ftuh", orgPath: "Organisasi_mahasiswa/HMA-FTUH/Agenda_organisasi" },
-                {title: "HMTI FT-UH", path: "/agenda-anggota/hmti-ftuh", orgPath: "Organisasi_mahasiswa/HMTI-FTUH/Agenda_organisasi" },
-                {title: "HMTL FT-UH", path: "/agenda-anggota/hmtl-ftuh",  orgPath: "Organisasi_mahasiswa/HMTL-FTUH/Agenda_organisasi" },
-                {title: "OKIF FT-UH", path: "/agenda-anggota/okif-ftuh", orgPath: "Organisasi_mahasiswa/OKIF-FTUH/Agenda_organisasi" },
-                {title: "OKSP FT-UH", path: "/agenda-anggota/oksp-ftuh", orgPath: "Organisasi_mahasiswa/OKSP-FTUH/Agenda_organisasi" },
-                {title: "HMTK FT-UH", path: "/agenda-anggota/hmtk-ftuh", orgPath: "Organisasi_mahasiswa/HMTK-FTUH/Agenda_organisasi" },
-                {title: "PERMATA FT-UH", path: "/agenda-anggota/permata-ftuh", orgPath: "Organisasi_mahasiswa/PERMATA-FTUH/Agenda_organisasi" },
+                {title: "HMS FT-UH", path: "/agenda-kegiatan/hms-ftuh", orgPath: "Organisasi_mahasiswa/HMS-FTUH/Agenda_kegiatan" },
+                {title: "HMDP FT-UH", path: "/agenda-kegiatan/hmdp-ftuh", orgPath: "Organisasi_mahasiswa/HMDP-FTUH/Agenda_kegiatan" },
+                {title: "HME FT-UH", path: "/agenda-kegiatan/hme-ftuh", orgPath: "Organisasi_mahasiswa/HME-FTUH/Agenda_kegiatan" },
+                {title: "HMG FT-UH", path: "/agenda-kegiatan/hmg-ftuh", orgPath: "Organisasi_mahasiswa/HMG-FTUH/Agenda_kegiatan" },
+                {title: "HMM FT-UH", path: "/agenda-kegiatan/hmm-ftuh", orgPath: "Organisasi_mahasiswa/HMM-FTUH/Agenda_kegiatan" },
+                {title: "HMA FT-UH", path: "/agenda-kegiatan/hma-ftuh", orgPath: "Organisasi_mahasiswa/HMA-FTUH/Agenda_kegiatan" },
+                {title: "HMTI FT-UH", path: "/agenda-kegiatan/hmti-ftuh", orgPath: "Organisasi_mahasiswa/HMTI-FTUH/Agenda_kegiatan" },
+                {title: "HMTL FT-UH", path: "/agenda-kegiatan/hmtl-ftuh",  orgPath: "Organisasi_mahasiswa/HMTL-FTUH/Agenda_kegiatan" },
+                {title: "OKIF FT-UH", path: "/agenda-kegiatan/okif-ftuh", orgPath: "Organisasi_mahasiswa/OKIF-FTUH/Agenda_kegiatan" },
+                {title: "OKSP FT-UH", path: "/agenda-kegiatan/oksp-ftuh", orgPath: "Organisasi_mahasiswa/OKSP-FTUH/Agenda_kegiatan" },
+                {title: "HMTK FT-UH", path: "/agenda-kegiatan/hmtk-ftuh", orgPath: "Organisasi_mahasiswa/HMTK-FTUH/Agenda_kegiatan" },
+                {title: "PERMATA FT-UH", path: "/agenda-kegiatan/permata-ftuh", orgPath: "Organisasi_mahasiswa/PERMATA-FTUH/Agenda_kegiatan" },
             ]
         },
         { 
             title: "Struktur organisasi", icon: <PiTreeStructureFill />,
             submenu: true,
             submenuItems: [
-                {title: "HMS FT-UH", path: "/struktur-anggota/hms-ftuh", orgPath: "Organisasi_mahasiswa/HMS-FTUH/Struktur_organisasi" },
-                {title: "HMDP FT-UH", path: "/struktur-anggota/hmdp-ftuh", orgPath: "Organisasi_mahasiswa/HMDP-FTUH/Struktur_organisasi" },
-                {title: "HME FT-UH", path: "/struktur-anggota/hme-ftuh", orgPath: "Organisasi_mahasiswa/HME-FTUH/Struktur_organisasi" },
-                {title: "HMG FT-UH", path: "/struktur-anggota/hmg-ftuh", orgPath: "Organisasi_mahasiswa/HMG-FTUH/Struktur_organisasi" },
-                {title: "HMM FT-UH", path: "/struktur-anggota/hmm-ftuh", orgPath: "Organisasi_mahasiswa/HMM-FTUH/Struktur_organisasi" },
-                {title: "HMA FT-UH", path: "/struktur-anggota/hma-ftuh", orgPath: "Organisasi_mahasiswa/HMA-FTUH/Struktur_organisasi" },
-                {title: "HMTI FT-UH", path: "/struktur-anggota/hmti-ftuh", orgPath: "Organisasi_mahasiswa/HMTI-FTUH/Struktur_organisasi" },
-                {title: "HMTL FT-UH", path: "/struktur-anggota/hmtl-ftuh",  orgPath: "Organisasi_mahasiswa/HMTL-FTUH/Struktur_organisasi" },
-                {title: "OKIF FT-UH", path: "/struktur-anggota/okif-ftuh", orgPath: "Organisasi_mahasiswa/OKIF-FTUH/AStruktur_organisasi" },
-                {title: "OKSP FT-UH", path: "/struktur-anggota/oksp-ftuh", orgPath: "Organisasi_mahasiswa/OKSP-FTUH/Struktur_organisasi" },
-                {title: "HMTK FT-UH", path: "/struktur-anggota/hmtk-ftuh", orgPath: "Organisasi_mahasiswa/HMTK-FTUH/Struktur_organisasi" },
-                {title: "PERMATA FT-UH", path: "/struktur-anggota/permata-ftuh", orgPath: "Organisasi_mahasiswa/PERMATA-FTUH/Struktur_organisasi" },
+                {title: "HMS FT-UH", path: "/struktur-organisasi/hms-ftuh", orgPath: "Organisasi_mahasiswa/HMS-FTUH/Struktur_organisasi" },
+                {title: "HMDP FT-UH", path: "/struktur-organisasi/hmdp-ftuh", orgPath: "Organisasi_mahasiswa/HMDP-FTUH/Struktur_organisasi" },
+                {title: "HME FT-UH", path: "/struktur-organisasi/hme-ftuh", orgPath: "Organisasi_mahasiswa/HME-FTUH/Struktur_organisasi" },
+                {title: "HMG FT-UH", path: "/struktur-organisasi/hmg-ftuh", orgPath: "Organisasi_mahasiswa/HMG-FTUH/Struktur_organisasi" },
+                {title: "HMM FT-UH", path: "/struktur-organisasi/hmm-ftuh", orgPath: "Organisasi_mahasiswa/HMM-FTUH/Struktur_organisasi" },
+                {title: "HMA FT-UH", path: "/struktur-organisasi/hma-ftuh", orgPath: "Organisasi_mahasiswa/HMA-FTUH/Struktur_organisasi" },
+                {title: "HMTI FT-UH", path: "/struktur-organisasi/hmti-ftuh", orgPath: "Organisasi_mahasiswa/HMTI-FTUH/Struktur_organisasi" },
+                {title: "HMTL FT-UH", path: "/struktur-organisasi/hmtl-ftuh",  orgPath: "Organisasi_mahasiswa/HMTL-FTUH/Struktur_organisasi" },
+                {title: "OKIF FT-UH", path: "/struktur-organisasi/okif-ftuh", orgPath: "Organisasi_mahasiswa/OKIF-FTUH/AStruktur_organisasi" },
+                {title: "OKSP FT-UH", path: "/struktur-organisasi/oksp-ftuh", orgPath: "Organisasi_mahasiswa/OKSP-FTUH/Struktur_organisasi" },
+                {title: "HMTK FT-UH", path: "/struktur-organisasi/hmtk-ftuh", orgPath: "Organisasi_mahasiswa/HMTK-FTUH/Struktur_organisasi" },
+                {title: "PERMATA FT-UH", path: "/struktur-organisasi/permata-ftuh", orgPath: "Organisasi_mahasiswa/PERMATA-FTUH/Struktur_organisasi" },
             ]
         },
     ];
@@ -95,13 +95,12 @@ export default function Sidebar({ open, onToggle }){
         <div className="fixed top-0 left-0 h-full  z-50">
             <div className={`bg-primary h-full p-5 pt-8 ${open ? "w-60" : "w-20"} duration-700 relative flex flex-col`}>
                <BsArrowLeftShort 
-                className={`bg-white text-primary text-3xl rounded-full absolute -right-3 top-9 border border-primary cursor-pointer ${!open && "rotate-180"} `}
+                className={`bg-white text-primary text-3xl rounded-full absolute -right-3 top-9 border duration-300 border-primary cursor-pointer ${!open && "rotate-180"} `}
                 onClick={onToggle}/>
-
                 <div className="inline-flex items-center gap-x-4">
                     <HiAcademicCap className="text-5xl cursor-pointer block float-left mr-2 text-white" />
                     {open && (
-                        <h1 className="text-white origin-left font-bold duration-300">
+                        <h1 className="text-white origin-left font-bold duration-700">
                             Organisasi Kemahasiswaan
                         </h1>
                     )}
