@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { useReactTable, getCoreRowModel } from '@tanstack/react-table'
-import { collection, getDocs, doc, updateDoc } from 'firebase/firestore'
+import { collection, getDoc, doc, getDocs, updateDoc } from 'firebase/firestore'
 import { db } from '../config/firebaseConfig'
 import { useParams } from 'react-router-dom'
 
 const StrukturOrganisasi = () => {
     const { orgName } = useParams()
 
-    // Map orgName ke path collection di Firestore
     const orgPaths = {
-        'hma-ftuh': 'Organisasi_mahasiswa/HMA-FTUH/Anggota_organisasi',
-        'hms-ftuh': 'Organisasi_mahasiswa/HMS-FTUH/Anggota_organisasi',
-        'hmdp-ftuh': 'Organisasi_mahasiswa/HMDP-FTUH/Anggota_organisasi',
-        'hme-ftuh': 'Organisasi_mahasiswa/HME-FTUH/Anggota_organisasi',
-        'hmm-ftuh': 'Organisasi_mahasiswa/HMM-FTUH/Anggota_organisasi',
-        'hmtk-ftuh': 'Organisasi_mahasiswa/HMTK-FTUH/Anggota_organisasi',
-        'hmg-ftuh': 'Organisasi_mahasiswa/HMG-FTUH/Anggota_organisasi',
-        'hmti-ftuh': 'Organisasi_mahasiswa/HMTI-FTUH/Anggota_organisasi',
-        'hmtl-ftuh': 'Organisasi_mahasiswa/HMTL-FTUH/Anggota_organisasi',
-        'okif-ftuh': 'Organisasi_mahasiswa/OKIF-FTUH/Anggota_organisasi',
-        'oksp-ftuh': 'Organisasi_mahasiswa/OKSP-FTUH/Anggota_organisasi',
-        'permata-ftuh': 'Organisasi_mahasiswa/PERMATA-FTUH/Anggota_organisasi'
+        'hma-ftuh': 'Organisasi_mahasiswa/HMA-FTUH',
+        'hms-ftuh': 'Organisasi_mahasiswa/HMS-FTUH',
+        'hmdp-ftuh': 'Organisasi_mahasiswa/HMDP-FTUH',
+        'hme-ftuh': 'Organisasi_mahasiswa/HME-FTUH',
+        'hmm-ftuh': 'Organisasi_mahasiswa/HMM-FTUH',
+        'hmtk-ftuh': 'Organisasi_mahasiswa/HMTK-FTUH',
+        'hmg-ftuh': 'Organisasi_mahasiswa/HMG-FTUH',
+        'hmti-ftuh': 'Organisasi_mahasiswa/HMTI-FTUH',
+        'hmtl-ftuh': 'Organisasi_mahasiswa/HMTL-FTUH',
+        'okif-ftuh': 'Organisasi_mahasiswa/OKIF-FTUH',
+        'oksp-ftuh': 'Organisasi_mahasiswa/OKSP-FTUH',
+        'permata-ftuh': 'Organisasi_mahasiswa/PERMATA-FTUH'
     }
 
     const orgNames = {
@@ -41,8 +39,11 @@ const StrukturOrganisasi = () => {
     const jabatanOptions = ['Ketua Umum', 'Ketua Dewan', 'Sekretaris Dewan', 'Sekretaris Umum', 'Bendahara Umum']
 
     const orgPath = orgPaths[orgName]
+    const anggotaPath = `${orgPath}/Anggota_organisasi`
+
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
+    const [orgDetails, setOrgDetails] = useState({ deskripsi: '', visi: '', misi: '' })
     const [editRowId, setEditRowId] = useState(null)
     const [editedRow, setEditedRow] = useState({})
 
@@ -52,20 +53,29 @@ const StrukturOrganisasi = () => {
             return
         }
 
-        const fetchStruktur = async () => {
+        const fetchData = async () => {
             setLoading(true)
             try {
-                const querySnapshot = await getDocs(collection(db, orgPath))
+                const orgDoc = await getDoc(doc(db, orgPath))
+                if (orgDoc.exists()) {
+                    const { Deskripsi, Visi, Misi } = orgDoc.data()
+                    setOrgDetails({
+                        deskripsi: Deskripsi || 'Deskripsi tidak tersedia.',
+                        visi: Visi || 'Visi tidak tersedia.',
+                        misi: Misi || 'Misi tidak tersedia.'
+                    })
+                } else {
+                    console.warn('Dokumen organisasi tidak ditemukan.')
+                }
+
+                const querySnapshot = await getDocs(collection(db, anggotaPath))
                 const fetchedData = querySnapshot.docs
                     .map((doc) => ({
                         id: doc.id,
                         ...doc.data()
                     }))
-                    .filter(
-                        (item) => item.Jabatan && !item.Jabatan.toLowerCase().includes('anggota') // Cek substring "anggota"
-                    )
+                    .filter((item) => item.Jabatan && !item.Jabatan.toLowerCase().includes('anggota'))
                     .sort((a, b) => {
-                        // Mengatur agar anggota dengan jabatan "Ketua" muncul di atas
                         const isAketua = a.Jabatan.toLowerCase().includes('ketua')
                         const isBketua = b.Jabatan.toLowerCase().includes('ketua')
 
@@ -82,7 +92,7 @@ const StrukturOrganisasi = () => {
             }
         }
 
-        fetchStruktur()
+        fetchData()
     }, [orgPath])
 
     const handleEditClick = (row) => {
@@ -94,7 +104,7 @@ const StrukturOrganisasi = () => {
         if (!editedRow || !editedRow.id) return
 
         try {
-            const docRef = doc(db, orgPath, editedRow.id)
+            const docRef = doc(db, anggotaPath, editedRow.id)
             await updateDoc(docRef, editedRow)
 
             setData((prevData) => prevData.map((row) => (row.id === editedRow.id ? editedRow : row)))
@@ -116,46 +126,67 @@ const StrukturOrganisasi = () => {
     }
 
     return (
-        <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">{orgNames[orgName] || 'Nama Organisasi Tidak Ditemukan'}</h1>
+        <div className="p-6 max-w-5xl mx-auto bg-gray-100 shadow-lg rounded-lg">
+            <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">
+                {orgNames[orgName] || 'Nama Organisasi Tidak Ditemukan'}
+            </h1>
 
-            <h2 className="text-xl font-semibold mb-4">Struktur Organisasi</h2>
+            <div className="bg-white p-4 shadow-md rounded-lg mb-6">
+                <h2 className="text-xl font-semibold text-gray-800 mb-2">Deskripsi</h2>
+                <p className="text-gray-600 mb-4">{orgDetails.deskripsi}</p>
+
+                <h2 className="text-xl font-semibold text-gray-800 mb-2">Visi</h2>
+                <p className="text-gray-600 mb-4">{orgDetails.visi}</p>
+
+                <h2 className="text-xl font-semibold text-gray-800 mb-2">Misi</h2>
+                {Array.isArray(orgDetails.misi) ? (
+                    <ul className="list-disc list-inside text-gray-600 space-y-2">
+                        {orgDetails.misi.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p className="text-gray-600">{orgDetails.misi}</p>
+                )}
+            </div>
+
+            <h2 className="text-2xl font-semibold text-gray-700 mb-4">Struktur Organisasi</h2>
 
             {loading ? (
-                <p>Memuat data struktur organisasi...</p>
+                <p className="text-center text-gray-500">Memuat data struktur organisasi...</p>
             ) : (
-                <table className="min-w-full border-collapse border border-gray-200">
-                    <thead>
+                <table className="w-full border border-gray-300 bg-white rounded-lg overflow-hidden">
+                    <thead className="bg-blue-600 text-white">
                         <tr>
-                            <th className="border border-gray-300 px-4 py-2">Nama</th>
-                            <th className="border border-gray-300 px-4 py-2">Jabatan</th>
-                            <th className="border border-gray-300 px-4 py-2">Angkatan</th>
-                            <th className="border border-gray-300 px-4 py-2">Aksi</th>
+                            <th className="px-6 py-3 text-left">Nama</th>
+                            <th className="px-6 py-3 text-left">Jabatan</th>
+                            <th className="px-6 py-3 text-left">Angkatan</th>
+                            <th className="px-6 py-3 text-left">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map((row) => (
-                            <tr key={row.id} className="hover:bg-gray-100">
-                                <td className="border border-gray-300 px-4 py-2">
+                            <tr key={row.id} className="hover:bg-gray-100 border-b">
+                                <td className="px-6 py-4">
                                     {editRowId === row.id ? (
                                         <input
                                             type="text"
                                             name="Nama"
                                             value={editedRow.Nama || ''}
                                             onChange={handleChange}
-                                            className="border border-gray-300 p-1 w-full"
+                                            className="border p-2 rounded w-full"
                                         />
                                     ) : (
                                         row.Nama
                                     )}
                                 </td>
-                                <td className="border border-gray-300 px-4 py-2">
+                                <td className="px-6 py-4">
                                     {editRowId === row.id ? (
                                         <select
                                             name="Jabatan"
                                             value={editedRow.Jabatan || ''}
                                             onChange={handleChange}
-                                            className="border border-gray-300 p-1 w-full"
+                                            className="border p-2 rounded w-full"
                                         >
                                             <option value="">Pilih Jabatan</option>
                                             {jabatanOptions.map((jabatan) => (
@@ -168,31 +199,31 @@ const StrukturOrganisasi = () => {
                                         row.Jabatan
                                     )}
                                 </td>
-                                <td className="border border-gray-300 px-4 py-2">
+                                <td className="px-6 py-4">
                                     {editRowId === row.id ? (
                                         <input
                                             type="text"
                                             name="Angkatan"
                                             value={editedRow.Angkatan || ''}
                                             onChange={handleChange}
-                                            className="border border-gray-300 p-1 w-full"
+                                            className="border p-2 rounded w-full"
                                         />
                                     ) : (
                                         row.Angkatan
                                     )}
                                 </td>
-                                <td className="border border-gray-300 px-4 py-2">
+                                <td className="px-6 py-4">
                                     {editRowId === row.id ? (
                                         <>
                                             <button
                                                 onClick={handleSaveClick}
-                                                className="bg-blue-500 text-white px-4 py-1 rounded border border-blue-700 hover:bg-blue-600 mr-2"
+                                                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mr-2"
                                             >
                                                 Simpan
                                             </button>
                                             <button
                                                 onClick={handleCancelClick}
-                                                className="bg-red-500 text-white px-4 py-1 rounded border border-red-700 hover:bg-red-600"
+                                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                                             >
                                                 Batal
                                             </button>
@@ -200,24 +231,9 @@ const StrukturOrganisasi = () => {
                                     ) : (
                                         <button
                                             onClick={() => handleEditClick(row)}
-                                            className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 hover:shadow-lg transition duration-300 ease-in-out"
+                                            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                                         >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth="1.5"
-                                                stroke="currentColor"
-                                                className="w-5 h-5"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M16.862 3.487a2.25 2.25 0 1 1 3.182 3.182l-12.3 12.3a4.5 4.5 0 0 1-1.84 1.137l-3.034.879a.375.375 0 0 1-.464-.464l.879-3.034a4.5 4.5 0 0 1 1.137-1.84l12.3-12.3z"
-                                                />
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 6 17 3.5" />
-                                            </svg>
-                                            <span className="font-semibold">Edit</span>
+                                            Edit
                                         </button>
                                     )}
                                 </td>
