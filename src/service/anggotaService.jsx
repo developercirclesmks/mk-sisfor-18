@@ -1,15 +1,6 @@
-// AnggotaService.jsx
-import {
-    collection,
-    doc,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    getDocs,
-} from 'firebase/firestore';
+import { collection, doc, addDoc, updateDoc, deleteDoc, getDocs,} from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
 
-// Fungsi untuk mendapatkan semua data anggota
 export const getAnggota = async (collectionPath) => {
     try {
         const collRef = collection(db, collectionPath);
@@ -21,7 +12,6 @@ export const getAnggota = async (collectionPath) => {
     }
 };
 
-// Fungsi untuk membuat anggota baru
 export const createAnggota = async (orgPath, newMember) => {
     try {
         const docRef = await addDoc(collection(db, orgPath), newMember);
@@ -33,7 +23,6 @@ export const createAnggota = async (orgPath, newMember) => {
     }
 };
 
-// Fungsi untuk menghapus anggota
 export const deleteAnggota = async (collectionPath, id) => {
     try {
         const anggotaDoc = doc(db, collectionPath, id);
@@ -45,7 +34,6 @@ export const deleteAnggota = async (collectionPath, id) => {
     }
 };
 
-// Fungsi untuk mengedit anggota
 export const editAnggota = async (collectionPath, id, updatedData) => {
     try {
         const anggotaDoc = doc(db, collectionPath, id);
