@@ -1,90 +1,116 @@
 import React, { useEffect, useState } from "react";
-import { getAnggota } from "../service/anggotaService";
-import { getKegiatan } from "../service/kegiatanService";
-import { HiOutlineUser, HiOutlineCalendar, HiOutlinePlus } from "react-icons/hi";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../config/firebaseConfig";
+import { orgPaths } from "./DataAnggota"
+import { Doughnut } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-export default function Dashboard() {
-  const [totalAnggota, setTotalAnggota] = useState(0);
-  const [kegiatanAkanDatang, setKegiatanAkanDatang] = useState(0);
-  const [kegiatanSelesai, setKegiatanSelesai] = useState(0);
+// Register Chart.js components
+ChartJS.register(ArcElement, Tooltip, Legend);
 
-  useEffect(() => {
-    const fetchAnggota = async () => {
-      try {
-        const anggota = await getAnggota();
-        setTotalAnggota(anggota.length);
-      } catch (error) {
-        console.error("Gagal memuat data anggota:", error);
-      }
+// Custom Plugin untuk Teks di Tengah
+const centerTextPlugin = {
+    id: "centerText",
+    beforeDraw: (chart) => {
+        const { ctx, chartArea, width } = chart;
+        const total = chart.config.options.plugins.customText.total;
+        const centerX = width / 2;
+        const centerY = chartArea.top + chartArea.height / 2;
+
+        ctx.save();
+        ctx.font = "bold 20px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "#333";
+        ctx.fillText(`${total} Anggota`, centerX, centerY - 10);
+        ctx.font = "normal 14px Arial";
+        ctx.fillStyle = "#666";
+        ctx.fillText("Total", centerX, centerY + 15);
+        ctx.restore();
+    },
+};
+
+const Dashboard = () => {
+    const [dataCounts, setDataCounts] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [totalMembers, setTotalMembers] = useState(0);
+
+    useEffect(() => {
+        const fetchDataCounts = async () => {
+            try {
+                const promises = Object.entries(orgPaths).map(async ([key, path]) => {
+                    const snapshot = await getDocs(collection(db, path));
+                    return { key, count: snapshot.size };
+                });
+
+                const results = await Promise.all(promises);
+                const counts = {};
+                let total = 0;
+
+                results.forEach(({ key, count }) => {
+                    counts[key] = count;
+                    total += count;
+                });
+
+                setDataCounts(counts);
+                setTotalMembers(total);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchDataCounts();
+    }, []);
+
+    const chartData = {
+        labels: Object.keys(dataCounts).map((key) => key.toUpperCase()),
+        datasets: [
+            {
+                label: "Jumlah Anggota",
+                data: Object.values(dataCounts),
+                backgroundColor: [
+                    "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF",
+                    "#FF9F40", "#E7E9ED", "#76B947", "#8A2BE2", "#DC143C",
+                    "#00FA9A", "#FF7F50", "#B56576", "#6D6875", "#F28482",
+                ],
+                borderWidth: 2,
+                hoverOffset: 12,
+            },
+        ],
     };
 
-    const fetchKegiatan = async () => {
-      try {
-        const kegiatan = await getKegiatan();
-        const sekarang = new Date();
-
-        const akanDatang = kegiatan.filter(
-          (k) => new Date(k.tanggal) > sekarang
-        ).length;
-        const selesai = kegiatan.filter(
-          (k) => new Date(k.tanggal) <= sekarang
-        ).length;
-
-        setKegiatanAkanDatang(akanDatang);
-        setKegiatanSelesai(selesai);
-      } catch (error) {
-        console.error("Gagal memuat data kegiatan:", error);
-      }
+    const chartOptions = {
+        plugins: {
+            legend: { position: "bottom" },
+            tooltip: {
+                callbacks: {
+                    label: (tooltipItem) => {
+                        const value = tooltipItem.raw;
+                        const percentage = ((value / totalMembers) * 100).toFixed(1);
+                        return `${value} anggota (${percentage}%)`;
+                    },
+                },
+            },
+            customText: { total: totalMembers },
+        },
     };
 
-    fetchAnggota();
-    fetchKegiatan();
-  }, []);
+    return (
+        <div className="p-6">
+            <h1 className="text-3xl font-bold text-gray-800 mb-4">Dashboard</h1>
 
-  return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
+            <div className="bg-white rounded-3xl shadow-lg p-6 max-w-md mx-auto">
+                <h2 className="text-lg font-bold text-gray-700 mb-4 text-center">Persentase Anggota</h2>
+                {loading ? (
+                    <p className="text-center">Loading...</p>
+                ) : (
+                    <Doughnut data={chartData} options={chartOptions} plugins={[centerTextPlugin]} />
+                )}
+            </div>
+        </div>
+    );
+};
 
-      {/* Statistik */}
-      <div className="grid grid-cols-3 gap-6 mb-8">
-        <div className="bg-blue-500 text-white p-4 rounded-lg flex items-center">
-          <HiOutlineUser className="text-4xl mr-4" />
-          <div>
-            <p className="text-xl font-semibold">{totalAnggota}</p>
-            <p>Total Anggota</p>
-          </div>
-        </div>
-        <div className="bg-green-500 text-white p-4 rounded-lg flex items-center">
-          <HiOutlineCalendar className="text-4xl mr-4" />
-          <div>
-            <p className="text-xl font-semibold">{kegiatanAkanDatang}</p>
-            <p>Kegiatan Akan Datang</p>
-          </div>
-        </div>
-        <div className="bg-red-500 text-white p-4 rounded-lg flex items-center">
-          <HiOutlineCalendar className="text-4xl mr-4" />
-          <div>
-            <p className="text-xl font-semibold">{kegiatanSelesai}</p>
-            <p>Kegiatan Selesai</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Shortcut */}
-      <div className="grid grid-cols-3 gap-6">
-        <button className="bg-gray-200 p-4 rounded-lg shadow hover:bg-gray-300 flex items-center justify-center">
-          <HiOutlinePlus className="text-2xl mr-2" />
-          Tambah Anggota
-        </button>
-        <button className="bg-gray-200 p-4 rounded-lg shadow hover:bg-gray-300 flex items-center justify-center">
-          <HiOutlineCalendar className="text-2xl mr-2" />
-          Kelola Agenda
-        </button>
-        <button className="bg-gray-200 p-4 rounded-lg shadow hover:bg-gray-300 flex items-center justify-center">
-          <HiOutlineUser className="text-2xl mr-2" />
-          Perbarui Informasi
-        </button>
-      </div>
-    </div>
-  );
-}
+export default Dashboard;
