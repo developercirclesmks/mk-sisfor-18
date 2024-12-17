@@ -6,23 +6,23 @@ import { db } from "../config/firebaseConfig";
 import { useParams } from 'react-router-dom';
 import { PlusCircle, Edit, Trash } from 'lucide-react';
 
+export const orgPaths = {
+  "hma-ftuh": "Organisasi_mahasiswa/HMA-FTUH/Agenda_kegiatan",
+  "hms-ftuh": "Organisasi_mahasiswa/HMS-FTUH/Agenda_kegiatan",
+  "hmdp-ftuh": "Organisasi_mahasiswa/HMDP-FTUH/Agenda_kegiatan",
+  "hme-ftuh": "Organisasi_mahasiswa/HME-FTUH/Agenda_kegiatan",
+  "hmm-ftuh": "Organisasi_mahasiswa/HMM-FTUH/Agenda_kegiatan",
+  "hmtk-ftuh": "Organisasi_mahasiswa/HMTK-FTUH/Agenda_kegiatan",
+  "hmg-ftuh": "Organisasi_mahasiswa/HMG-FTUH/Agenda_kegiatan",
+  "hmti-ftuh": "Organisasi_mahasiswa/HMTI-FTUH/Agenda_kegiatan",
+  "hmtl-ftuh": "Organisasi_mahasiswa/HMTL-FTUH/Agenda_kegiatan",
+  "okif-ftuh": "Organisasi_mahasiswa/OKIF-FTUH/Agenda_kegiatan",
+  "oksp-ftuh": "Organisasi_mahasiswa/OKSP-FTUH/Agenda_kegiatan",
+  "permata-ftuh": "Organisasi_mahasiswa/PERMATA-FTUH/Agenda_kegiatan",
+};
+
 const AgendaKegiatan = () => {
   const { orgName } = useParams();
-  const orgPaths = {
-    "hma-ftuh": "Organisasi_mahasiswa/HMA-FTUH/Agenda_kegiatan",
-    "hms-ftuh": "Organisasi_mahasiswa/HMS-FTUH/Agenda_kegiatan",
-    "hmdp-ftuh": "Organisasi_mahasiswa/HMDP-FTUH/Agenda_kegiatan",
-    "hme-ftuh": "Organisasi_mahasiswa/HME-FTUH/Agenda_kegiatan",
-    "hmm-ftuh": "Organisasi_mahasiswa/HMM-FTUH/Agenda_kegiatan",
-    "hmtk-ftuh": "Organisasi_mahasiswa/HMTK-FTUH/Agenda_kegiatan",
-    "hmg-ftuh": "Organisasi_mahasiswa/HMG-FTUH/Agenda_kegiatan",
-    "hmti-ftuh": "Organisasi_mahasiswa/HMTI-FTUH/Agenda_kegiatan",
-    "hmtl-ftuh": "Organisasi_mahasiswa/HMTL-FTUH/Agenda_kegiatan",
-    "okif-ftuh": "Organisasi_mahasiswa/OKIF-FTUH/Agenda_kegiatan",
-    "oksp-ftuh": "Organisasi_mahasiswa/OKSP-FTUH/Agenda_kegiatan",
-    "permata-ftuh": "Organisasi_mahasiswa/PERMATA-FTUH/Agenda_kegiatan",
-  };
-
   const orgPath = orgPaths[orgName];
   const [agendas, setAgendas] = useState([]);
   const [loading, setLoading] = useState(true);
