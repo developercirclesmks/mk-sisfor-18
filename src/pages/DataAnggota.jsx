@@ -11,25 +11,26 @@ import { Box, IconButton, Tooltip } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+// Map orgName ke path collection di firestoreku
+export const memPaths = {
+    "hma-ftuh": "Organisasi_mahasiswa/HMA-FTUH/Anggota_organisasi",
+    "hms-ftuh": "Organisasi_mahasiswa/HMS-FTUH/Anggota_organisasi",
+    "hmdp-ftuh": "Organisasi_mahasiswa/HMDP-FTUH/Anggota_organisasi",
+    "hme-ftuh": "Organisasi_mahasiswa/HME-FTUH/Anggota_organisasi",
+    "hmm-ftuh": "Organisasi_mahasiswa/HMM-FTUH/Anggota_organisasi",
+    "hmtk-ftuh": "Organisasi_mahasiswa/HMTK-FTUH/Anggota_organisasi",
+    "hmg-ftuh": "Organisasi_mahasiswa/HMG-FTUH/Anggota_organisasi",
+    "hmti-ftuh": "Organisasi_mahasiswa/HMTI-FTUH/Anggota_organisasi",
+    "hmtl-ftuh": "Organisasi_mahasiswa/HMTL-FTUH/Anggota_organisasi",
+    "okif-ftuh": "Organisasi_mahasiswa/OKIF-FTUH/Anggota_organisasi",
+    "oksp-ftuh": "Organisasi_mahasiswa/OKSP-FTUH/Anggota_organisasi",
+    "permata-ftuh": "Organisasi_mahasiswa/PERMATA-FTUH/Anggota_organisasi",
+};
+
 const DataAnggota = () => {
     const { orgName } = useParams();
-    // Map orgName ke path collection di firestoreku
-    const orgPaths = {
-        "hma-ftuh": "Organisasi_mahasiswa/HMA-FTUH/Anggota_organisasi",
-        "hms-ftuh": "Organisasi_mahasiswa/HMS-FTUH/Anggota_organisasi",
-        "hmdp-ftuh": "Organisasi_mahasiswa/HMDP-FTUH/Anggota_organisasi",
-        "hme-ftuh": "Organisasi_mahasiswa/HME-FTUH/Anggota_organisasi",
-        "hmm-ftuh": "Organisasi_mahasiswa/HMM-FTUH/Anggota_organisasi",
-        "hmtk-ftuh": "Organisasi_mahasiswa/HMTK-FTUH/Anggota_organisasi",
-        "hmg-ftuh": "Organisasi_mahasiswa/HMG-FTUH/Anggota_organisasi",
-        "hmti-ftuh": "Organisasi_mahasiswa/HMTI-FTUH/Anggota_organisasi",
-        "hmtl-ftuh": "Organisasi_mahasiswa/HMTL-FTUH/Anggota_organisasi",
-        "okif-ftuh": "Organisasi_mahasiswa/OKIF-FTUH/Anggota_organisasi",
-        "oksp-ftuh": "Organisasi_mahasiswa/OKSP-FTUH/Anggota_organisasi",
-        "permata-ftuh": "Organisasi_mahasiswa/PERMATA-FTUH/Anggota_organisasi",
-    };
-
-    const orgPath = orgPaths[orgName];
+    
+    const orgPath = memPaths[orgName];
     const [members, setMembers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [editingMember, setEditingMember] = useState(null);
