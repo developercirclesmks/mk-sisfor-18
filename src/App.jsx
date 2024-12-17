@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./pages/component/Layout";
 import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
-import OkifFtUh from "./pages/OkifFtUh"; 
+import Login from "./pages/Login"; 
 import DataAnggota from "./pages/DataAnggota"; 
 import AgendaKegiatan from "./pages/AgendaKegiatan";
 import StrukturOrganisasi from "./pages/StrukturOrganisasi";
@@ -29,8 +28,7 @@ function App() {
           />
 
           {/* Route page lain sesuaikan mi sama route page ku */}
-
-          <Route path="okif-ft-uh" element={<OkifFtUh />} /> 
+ 
         </Route>
       </Routes>
     </Router>
