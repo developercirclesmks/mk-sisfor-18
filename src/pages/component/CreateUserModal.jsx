@@ -14,15 +14,6 @@ const CreateUserModal = ({ open, onClose, onSave, newMember, handleInputChange }
                 <DialogContent>
                     <div className="mb-4">
                         <TextField
-                            label="Id"
-                            name="Id"
-                            value={newMember.Id}
-                            onChange={handleInputChange}
-                            fullWidth
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <TextField
                             label="Nama"
                             name="Nama"
                             value={newMember.Nama}
